@@ -15,3 +15,5 @@ run: compile ## runs the app
 
 watch: run ## starts with watcher
 	@fswatch -1 * | xargs -n1 make watch
+
+check: compile ## runs some checks (but not really)

@@ -6,8 +6,11 @@ help:
 install: ## installs dependancies (debian)
 	sudo apt install libsdl2-gfx-dev fswatch
 
-run: ## runs the app
-	@g++ *.cpp -lSDL2main -lSDL2 
+compile: ## compiles the app
+	@g++ *.cpp -lSDL2main -lSDL2 -I./headers
+
+run: compile ## runs the app
 	@./a.out || true
+	
 watch: run ## starts with watcher
 	@fswatch -1 * | xargs -n1 make watch

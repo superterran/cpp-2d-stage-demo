@@ -32,7 +32,7 @@ class AnimatedSprite : public Sprite {
         /** void setupAnimations
          * requierd
          */
-        virtual void setupAnimations() = 0;
+        virtual void setupAnimations();
 
     protected:
         double _timeToUpdate;
@@ -45,12 +45,12 @@ class AnimatedSprite : public Sprite {
 
         void stopAnimation();
 
-        void setVisibile(bool visible);
+        void setVisible(bool visible);
 
         /**
          * logic that happens when an animation ends
          */
-        virtual void animationDone(std::string currentAnimation) = 0;
+        virtual void animationDone(std::string currentAnimation);
 
 
     private:

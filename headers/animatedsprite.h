@@ -17,6 +17,7 @@ class Graphics;
 class AnimatedSprite : public Sprite {
     public:
         AnimatedSprite();
+        ~AnimatedSprite();
         AnimatedSprite(Graphics &graphics, const std::string &filePath, int sourceX, int sourceY, int width, int height, float posX, float posY, float timeToUpdate);
         
         /** void playAnimation
@@ -31,7 +32,7 @@ class AnimatedSprite : public Sprite {
         /** void setupAnimations
          * requierd
          */
-        virtual void setupAnimations();
+        virtual void setupAnimations() = 0;
 
     protected:
         double _timeToUpdate;
@@ -49,7 +50,7 @@ class AnimatedSprite : public Sprite {
         /**
          * logic that happens when an animation ends
          */
-        virtual void animationDone(std::string currentAnimation);
+        virtual void animationDone(std::string currentAnimation) = 0;
 
 
     private:

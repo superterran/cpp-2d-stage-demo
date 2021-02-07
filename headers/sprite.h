@@ -7,8 +7,8 @@
 #include <string>
 
 
-struct SDL_Rect;
-struct SDL_Texture;
+// struct SDL_Rect;
+// struct SDL_Texture;
 
 class Graphics;
 

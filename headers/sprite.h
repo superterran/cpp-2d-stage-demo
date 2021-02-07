@@ -9,7 +9,8 @@
 
 struct SDL_Rect;
 struct SDL_Texture;
-struct Graphics;
+
+class Graphics;
 
 class Sprite {
     public:

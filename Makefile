@@ -8,6 +8,6 @@ install: ## installs dependancies (debian)
 
 run: ## runs the app
 	@g++ *.cpp -lSDL2main -lSDL2 
-	@./a.out
+	@./a.out || true
 watch: run ## starts with watcher
 	@fswatch -1 * | xargs -n1 make watch

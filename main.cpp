@@ -1,6 +1,12 @@
-#include <stdio.h>
+#include "graphics.h"
 
-int main() {
-    printf("Hi\n"); 
+int main(int argc, const char* argv[]) {
+    
+    Graphics Graphics;
+
+    while(true) {
+
+    }
+
     return 0;
 }

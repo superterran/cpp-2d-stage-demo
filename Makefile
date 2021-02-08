@@ -8,7 +8,7 @@ install: ## installs dependancies (debian)
 
 compile: ## compiles the app
 	@mkdir -p bin
-	@g++ *.cpp -lSDL2main -lSDL2 -lSDL2_image -I./headers -o bin/fantasy
+	@g++ src/*.cpp -lSDL2main -lSDL2 -lSDL2_image -I./headers -I./src -o bin/fantasy
 
 run: compile ## runs the app
 	@./bin/fantasy || true

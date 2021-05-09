@@ -12,15 +12,7 @@ public:
 	Main();
 	~Main();
 
-	SDL_Surface* loadImage(const std::string &filePath);
-
-	void blitSurface(SDL_Texture* source, SDL_Rect* sourceRectangle, SDL_Rect* destinationRectangle);
-
 	void gameLoop();
-
-	void flip();
-
-	void clear();
 
 	SDL_Renderer* getRenderer() const;
 

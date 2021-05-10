@@ -7,11 +7,11 @@ install-ubutnu: ## installs dependancies (ubuntu)
 	sudo apt install libsdl2-gfx-dev libsdl2-image-dev fswatch
 
 install-fedora: ## installs dependancies (fedora)
-	sudo dnf install gcc-c++ SDL2_image SDL2-devel SDL2_image-devel SDL2_gfx-devel
+	sudo dnf install gcc-c++ SDL2_image SDL2-devel SDL2_image-devel SDL2_gfx-devel yaml-cpp-devel
 
 compile: ## compiles only
 	@mkdir -p bin
-	@g++ src/*.cpp -lSDL2 -lSDL2_image -I./headers -I./src -o bin/fantasy
+	@g++ src/*.cpp -lyaml-cpp -lSDL2 -lSDL2_image -I./headers -I./src -o bin/fantasy
 
 run: compile ## compiles and runs
 	@./bin/fantasy

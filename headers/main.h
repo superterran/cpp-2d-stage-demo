@@ -14,7 +14,13 @@ public:
 
 	void gameLoop();
 
+	void drawRect(int x, int y, int h, int w);
+
+	void log(const char* message);
+
 	SDL_Renderer* getRenderer() const;
+
+	void loadYaml();
 
 private:
 	SDL_Window* _window;

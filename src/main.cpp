@@ -56,7 +56,7 @@ void Main::drawRect(int x, int y, int h, int w) {
 
 void Main::loadYaml() {
     YAML::Node config = YAML::LoadFile("levels/basic.yml");
-    this->log("this is a test");
+    
 }
 
 void Main::log(const char* message) {

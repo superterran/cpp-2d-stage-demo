@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "shell",
+        "label": "g++ build active file",
+        "command": "/usr/bin/g++",
+        "args": ["${workspaceFolder}/src/*.cpp", "-lyaml-cpp", "-lSDL2", "-lSDL2_image", "-I${workspaceFolder}/headers", "-I${workspaceFolder}/src", "-o", "${workspaceFolder}/bin/fantasy"],
+        "options": {
+          "cwd": "/usr/bin"
+        },
+        "problemMatcher": ["$gcc"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }
+
+  

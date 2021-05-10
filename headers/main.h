@@ -22,6 +22,8 @@ public:
 
 	void loadYaml();
 
+	std::string _level;
+
 private:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;

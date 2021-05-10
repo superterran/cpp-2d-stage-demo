@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+
 #include "yaml-cpp/yaml.h"
 
 
@@ -55,8 +56,8 @@ void Main::drawRect(int x, int y, int h, int w) {
 }
 
 void Main::loadYaml() {
-    YAML::Node config = YAML::LoadFile("levels/basic.yml");
-    
+    YAML::Node config = YAML::LoadFile("levels/basic.yaml");
+    this->_level = config["level"].as<std::string>();
 }
 
 void Main::log(const char* message) {

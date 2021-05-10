@@ -3,6 +3,10 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 
+#include <chrono>
+#include <thread>
+
+
 #include "yaml-cpp/yaml.h"
 
 
@@ -30,42 +34,56 @@ void Main::gameLoop() {
     this->loadLevel();
    // this->drawRect(0, 0, 100, 100);
     
-    // while(true) {
+  //  while(true) {
+    
+        for (int x = 0; x < 9; x++) {
+            
+            std::cout << "\n";
+            for (int y = 0; y < 14; y++) {
+    
+                std::cout << this->_level[x].val[y] << " ";
+     
+                std::string chr;
+                chr.push_back(this->_level[x].val[y]);
 
-    // }
-
-    for (int i = 0; i < 9; i++) {
-        
-        std::cout << "\n";
-        
-        for (int y = 0; y < 14; y++) {
-  
-            std::cout << this->_level[i].val[y] << " ";
-        
+                this->drawRect(x, y, chr);
+            }
         }
-
-    }
-
-
+    
+        SDL_RenderPresent(this->_renderer);
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+        SDL_RenderClear(this->_renderer);
+    
+   // }
 }
 
-void Main::drawRect(int x, int y, int h, int w) {
+void Main::drawRect(int x, int y, std::string tile) {
 
-    SDL_RenderClear(this->_renderer);
+    int r = 0;
+    int g = 0;
+    int b = 0;
+    int a = 0;
 
+    for (int i = 0; i < 26; i++) {
+
+        if (this->_tiles[i].id == tile) {
+            r = this->_tiles[i].r;
+            g = this->_tiles[i].g;
+            b = this->_tiles[i].b;
+            a = this->_tiles[i].a;
+            break;
+        }
+    }
+    
     SDL_Rect rect;
-    rect.x = x;
-    rect.y = y;
-    rect.w = w;
-    rect.h = h;
+    rect.x = x*10;
+    rect.y = y*10;
+    rect.w = 10;
+    rect.h = 10;
 
-    SDL_SetRenderDrawColor(this->_renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(this->_renderer, r, g, b, a);
     
     SDL_RenderFillRect(this->_renderer, &rect);
-
-    SDL_SetRenderDrawColor(this->_renderer, 0, 0, 0, 255);
-
-    SDL_RenderPresent(this->_renderer);
 
 
 }
@@ -87,7 +105,7 @@ void Main::loadLevel() {
     this->_level[8].val = "wwwwwwwwwwwwww";
 
     this->_tiles[0].id = " "; 
-    this->_tiles[0].r = 255;
+    this->_tiles[0].r = 0;
     this->_tiles[0].g = 0;
     this->_tiles[0].b = 0;
     this->_tiles[0].a = 255;

@@ -28,7 +28,7 @@ public:
 
 	void gameLoop();
 
-	void drawRect(int x, int y, int h, int w);
+	void drawRect(int x, int y, std::string tile);
 
 	void log(const char* message);
 

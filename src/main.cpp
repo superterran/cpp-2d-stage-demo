@@ -34,15 +34,12 @@ void Main::gameLoop() {
     this->loadLevel();
    // this->drawRect(0, 0, 100, 100);
     
-  //  while(true) {
+    while(true) {
     
         for (int y = 0; y < globals::TILE_COLS; y++) {
-            
-            std::cout << "\n";
+
             for (int x = 0; x < globals::TILE_ROWS; x++) {
-    
-                std::cout << this->_level[y].val[x] << " ";
-     
+
                 std::string chr;
                 chr.push_back(this->_level[y].val[x]);
 
@@ -54,7 +51,7 @@ void Main::gameLoop() {
         std::this_thread::sleep_for(std::chrono::milliseconds(3000));
         SDL_RenderClear(this->_renderer);
     
-   // }
+    }
 }
 
 void Main::drawRect(int x, int y, std::string tile) {

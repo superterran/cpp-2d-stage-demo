@@ -3,7 +3,7 @@
     "tasks": [
       {
         "type": "shell",
-        "label": "g++ build active file",
+        "label": "build",
         "command": "/usr/bin/g++",
         "args": ["${workspaceFolder}/src/*.cpp", "-lyaml-cpp", "-lSDL2", "-lSDL2_image", "-I${workspaceFolder}/headers", "-I${workspaceFolder}/src", "-o", "${workspaceFolder}/bin/fantasy-debug", "-g"],
         "options": {

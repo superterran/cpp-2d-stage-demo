@@ -19,7 +19,7 @@ int main(int argc, const char* argv[]) {
 }
 
 Main::Main() {
-    SDL_CreateWindowAndRenderer(globals::SCREEN_WIDTH, globals::SCREEN_HEIGHT, 0, &this->_window, &this->_renderer);
+    SDL_CreateWindowAndRenderer(globals::TILE_WIDTH*globals::TILE_ROWS, globals::TILE_WIDTH * globals::TILE_COLS, 0, &this->_window, &this->_renderer);
     SDL_SetWindowTitle(this->_window, "Chicora Fantasy");
     this->gameLoop();
 }
@@ -36,15 +36,15 @@ void Main::gameLoop() {
     
   //  while(true) {
     
-        for (int x = 0; x < 9; x++) {
+        for (int y = 0; y < globals::TILE_COLS; y++) {
             
             std::cout << "\n";
-            for (int y = 0; y < 14; y++) {
+            for (int x = 0; x < globals::TILE_ROWS; x++) {
     
-                std::cout << this->_level[x].val[y] << " ";
+                std::cout << this->_level[y].val[x] << " ";
      
                 std::string chr;
-                chr.push_back(this->_level[x].val[y]);
+                chr.push_back(this->_level[y].val[x]);
 
                 this->drawRect(x, y, chr);
             }
@@ -76,10 +76,10 @@ void Main::drawRect(int x, int y, std::string tile) {
     }
     
     SDL_Rect rect;
-    rect.x = x*10;
-    rect.y = y*10;
-    rect.w = 10;
-    rect.h = 10;
+    rect.x = x*globals::TILE_WIDTH;
+    rect.y = y*globals::TILE_WIDTH;
+    rect.w = globals::TILE_WIDTH;
+    rect.h = globals::TILE_WIDTH;
 
     SDL_SetRenderDrawColor(this->_renderer, r, g, b, a);
     
@@ -94,15 +94,15 @@ void Main::loadYaml() {
 }
 
 void Main::loadLevel() {
-    this->_level[0].val = "wwwwwwwwwwwwww";
-    this->_level[1].val = "w            w";
-    this->_level[2].val = "w            w";
-    this->_level[3].val = "w            w";
-    this->_level[4].val = "w     P      w";
-    this->_level[5].val = "w            w";
-    this->_level[6].val = "w            w";
-    this->_level[7].val = "w            w";
-    this->_level[8].val = "wwwwwwwwwwwwww";
+    this->_level[0].val = "wwwwwwwwwwwwwwwwwwwwwwwww";
+    this->_level[1].val = "w                       w";
+    this->_level[2].val = "w                       w";
+    this->_level[3].val = "w                       w";
+    this->_level[4].val = "w           P           w";
+    this->_level[5].val = "w                       w";
+    this->_level[6].val = "w                       w";
+    this->_level[7].val = "w                       w";
+    this->_level[8].val = "wwwwwwwwwwwwwwwwwwwwwwwww";
 
     this->_tiles[0].id = " "; 
     this->_tiles[0].r = 0;

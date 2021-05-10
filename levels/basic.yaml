@@ -1,11 +1,11 @@
 ---
 name: Doug
-level: >-
-  wwwwwwwwwwwww
-  w           w
-  w           w    
-  w           w
-  w     P     w
-  w           w
-  w           w
-  wwwwwwwwwwwww
+level: 
+  - "wwwwwwwwwwwww"
+  - "w           w"
+  - "w           w"    
+  - "w           w"
+  - "w     P     w"
+  - "w           w"
+  - "w           w"
+  - "wwwwwwwwwwwww"

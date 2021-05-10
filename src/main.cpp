@@ -26,7 +26,8 @@ Main::~Main() {
 
 void Main::gameLoop() {
 
-    this->loadYaml();
+    // this->loadYaml();
+    this->loadLevel();
     this->drawRect(0, 0, 100, 100);
     
     // while(true) {
@@ -57,8 +58,40 @@ void Main::drawRect(int x, int y, int h, int w) {
 
 void Main::loadYaml() {
     YAML::Node config = YAML::LoadFile("levels/basic.yaml");
-    this->_level = config["level"].as<std::string>();
+    // this->_level[] = config["level"];
 }
+
+void Main::loadLevel() {
+    this->_level[0].val = "wwwwwwwwwwwwww";
+    this->_level[1].val = "w            w";
+    this->_level[2].val = "w            w";
+    this->_level[3].val = "w            w";
+    this->_level[4].val = "w     P      w";
+    this->_level[5].val = "w            w";
+    this->_level[6].val = "w            w";
+    this->_level[7].val = "w            w";
+    this->_level[8].val = "wwwwwwwwwwwwww";
+
+    this->_tiles[0].id = " "; 
+    this->_tiles[0].r = 255;
+    this->_tiles[0].g = 0;
+    this->_tiles[0].b = 0;
+    this->_tiles[0].a = 255;
+
+    this->_tiles[1].id = "w";
+    this->_tiles[1].r = 0;
+    this->_tiles[1].g = 255;
+    this->_tiles[1].b = 0;
+    this->_tiles[1].a = 255;
+
+    this->_tiles[2].id = "P";
+    this->_tiles[2].r = 0;
+    this->_tiles[2].g = 0;
+    this->_tiles[2].b = 255;
+    this->_tiles[2].a = 255;
+
+}
+
 
 void Main::log(const char* message) {
     std::cout << message << std::endl;

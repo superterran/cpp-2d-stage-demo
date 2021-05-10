@@ -3,11 +3,25 @@
 
 #include <map>
 #include <string>
+#include <array> 
 
 struct SDL_Window;
 struct SDL_Renderer;
 
+struct Level {
+	std::string val;
+};
+
+struct Tiles {
+	std::string id;
+	int r;
+	int g;
+	int b;
+	int a;
+};
+
 class Main {
+
 public:
 	Main();
 	~Main();
@@ -22,7 +36,10 @@ public:
 
 	void loadYaml();
 
-	std::string _level;
+	void loadLevel();
+
+	Level _level[20];
+	Tiles _tiles[26];
 
 private:
 	SDL_Window* _window;

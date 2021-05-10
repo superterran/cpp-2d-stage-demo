@@ -28,11 +28,25 @@ void Main::gameLoop() {
 
     // this->loadYaml();
     this->loadLevel();
-    this->drawRect(0, 0, 100, 100);
+   // this->drawRect(0, 0, 100, 100);
     
     // while(true) {
 
     // }
+
+    for (int i = 0; i < 9; i++) {
+        
+        std::cout << "\n";
+        
+        for (int y = 0; y < 14; y++) {
+  
+            std::cout << this->_level[i].val[y] << " ";
+        
+        }
+
+    }
+
+
 }
 
 void Main::drawRect(int x, int y, int h, int w) {

@@ -23,7 +23,10 @@ Main::Main() {
 
     this->_timer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
 
+    this->loadLevel();
+    
     this->gameLoop();
+
 }
 
 Main::~Main() {
@@ -32,36 +35,14 @@ Main::~Main() {
 
 void Main::gameLoop() {
 
-    // this->loadYaml();
-
-    this->loadLevel();
     auto FPS = std::chrono::milliseconds(1000 / globals::FPS);
-
-    SDL_Event event;
+   
     Input input;                        
 
-
-    while(true) {
+    while(input.process()) {
 
         input.beginNewFrame();
         
-        if(SDL_PollEvent(&event)) {
-            if(event.type == SDL_KEYDOWN) {
-                if(event.key.repeat == 0) {
-                    input.keyDownEvent(event);
-                }
-            }
-            else if (event.type == SDL_KEYUP) {
-                input.keyUpEvent(event);
-            }
-            else if (event.type == SDL_QUIT) {
-                return;
-            }
-        }
-        if(input.wasKeyPressed(SDL_SCANCODE_ESCAPE) == true) {
-            return;
-        } 
-    
         std::chrono::milliseconds timer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
         
         if (timer >= (this->_timer + FPS)) {
@@ -69,7 +50,7 @@ void Main::gameLoop() {
             this->_timer = timer;
             
             this->draw();   
-            this->move();
+            this->move(input);
 
             SDL_RenderPresent(this->_renderer);
             SDL_RenderClear(this->_renderer);  
@@ -78,10 +59,10 @@ void Main::gameLoop() {
     } 
 }
 
-void Main::move() {
+void Main::move(Input input) {
 
-    this->drawRect(3, 3, "P");
-
+    this->_player.move(input);
+    this->drawRect(this->_player.x, this->_player.y, "P");
 }
 
 
@@ -97,9 +78,7 @@ void Main::draw() {
             this->drawRect(x, y, chr);
         }
     }
-
 }
-
 
 void Main::drawRect(int x, int y, std::string sprite) {
 
@@ -142,10 +121,5 @@ void Main::loadLevel() {
     this->_sprites["w"] = { 0, 255, 0, 255 };
     this->_sprites["P"] = { 0, 0, 255, 255 };
 
-    this->_chars["P"] = {"Lil Wolf", 5, 5, true};
-}
-
-
-void Main::log(const char* message) {
-    std::cout << message << std::endl;
+    // this->_chars["P"] = {"Lil Wolf", 5, 5};
 }

@@ -9,7 +9,7 @@ namespace globals {
     const int TILE_ROWS = 25;
     const int TILE_COLS = 9;
 
-    const int FPS = 60;
+    const int FPS = 5;
 
 }
 

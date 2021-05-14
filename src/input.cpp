@@ -1,4 +1,31 @@
+#include <SDL2/SDL.h>
 #include "input.h"
+
+
+bool Input::process() {
+
+    SDL_Event event;
+
+    if(SDL_PollEvent(&event)) {
+        if(event.type == SDL_KEYDOWN) {
+            if(event.key.repeat == 0) {
+                this->keyDownEvent(event);
+            }
+        }
+        else if (event.type == SDL_KEYUP) {
+            this->keyUpEvent(event);
+        }
+        else if (event.type == SDL_QUIT) {
+            return false;
+        }
+    } 
+    
+    if(this->wasKeyPressed(SDL_SCANCODE_ESCAPE) == true) {
+        return false;
+    } 
+
+    return true;
+}
 
 void Input::beginNewFrame() {
     this->_pressedKeys.clear();

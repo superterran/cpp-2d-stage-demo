@@ -6,6 +6,9 @@
 #include <array> 
 #include <chrono>
 
+#include "player.h"
+#include "input.h"
+
 struct SDL_Window;
 struct SDL_Renderer;
 
@@ -24,7 +27,6 @@ struct Char {
 	std::string name;
 	int x;
 	int y;
-	bool player;
 };
 
 
@@ -38,8 +40,6 @@ public:
 
 	void drawRect(int x, int y, std::string tile);
 
-	void log(const char* message);
-
 	SDL_Renderer* getRenderer() const;
 
 	void loadYaml();
@@ -48,9 +48,11 @@ public:
 
 	void draw();
 
-	void move();
+	void move(Input input);
 
 	Level _level[20];
+
+	Player _player;
 	
 	std::map<std::string, Sprite> _sprites;
 	std::chrono::milliseconds _timer ;

@@ -67,12 +67,21 @@ void Main::gameLoop() {
         if (timer >= (this->_timer + FPS)) {
 
             this->_timer = timer;
+            
+            this->draw();   
+            this->move();
 
-            this->draw();
-             
+            SDL_RenderPresent(this->_renderer);
+            SDL_RenderClear(this->_renderer);  
+
         }
     } 
 }
+
+void Main::move() {
+    this->drawRect(2, 2, "P");
+}
+
 
 void Main::draw() {
 
@@ -86,9 +95,6 @@ void Main::draw() {
             this->drawRect(x, y, chr);
         }
     }
-
-    SDL_RenderPresent(this->_renderer);
-    SDL_RenderClear(this->_renderer);   
 
 }
 
@@ -124,7 +130,7 @@ void Main::loadLevel() {
     this->_level[1].val = "w                       w";
     this->_level[2].val = "w                       w";
     this->_level[3].val = "w                       w";
-    this->_level[4].val = "w           P           w";
+    this->_level[4].val = "w                       w";
     this->_level[5].val = "w                       w";
     this->_level[6].val = "w                       w";
     this->_level[7].val = "w                       w";
@@ -133,6 +139,8 @@ void Main::loadLevel() {
     this->_sprites[" "] = { 0, 0, 0, 255 };
     this->_sprites["w"] = { 0, 255, 0, 255 };
     this->_sprites["P"] = { 0, 0, 255, 255 };
+
+    this->_chars["P"] = {"Lil Wolf", 5, 5, true};
 }
 
 

@@ -13,20 +13,20 @@ struct Level {
 	std::string val;
 };
 
-struct Tiles {
-	std::string id;
-	int r;
-	int g;
-	int b;
-	int a;
-};
-
 struct Sprite {
 	int r;
 	int g;
 	int b;
 	int a;
 };
+
+struct Char {
+	std::string name;
+	int x;
+	int y;
+	bool player;
+};
+
 
 class Main {
 
@@ -48,10 +48,13 @@ public:
 
 	void draw();
 
-	Level _level[20];
-	std::map<std::string, Sprite> _sprites;
+	void move();
 
+	Level _level[20];
+	
+	std::map<std::string, Sprite> _sprites;
 	std::chrono::milliseconds _timer ;
+	std::map<std::string, Char> _chars;
 
 private:
 	SDL_Window* _window;

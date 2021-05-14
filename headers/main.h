@@ -4,6 +4,7 @@
 #include <map>
 #include <string>
 #include <array> 
+#include <chrono>
 
 struct SDL_Window;
 struct SDL_Renderer;
@@ -48,13 +49,11 @@ public:
 	Level _level[20];
 	std::map<std::string, Sprite> _sprites;
 
+	std::chrono::milliseconds _timer ;
+
 private:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
-
-	std::map<std::string, SDL_Surface*> _spriteSheets;
-
-	
 };
 
 #endif

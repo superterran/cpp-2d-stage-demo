@@ -6,9 +6,7 @@
 #include <chrono>
 #include <thread>
 
-
 #include "yaml-cpp/yaml.h"
-
 
 #include "globals.h"
 #include "main.h"
@@ -21,6 +19,9 @@ int main(int argc, const char* argv[]) {
 Main::Main() {
     SDL_CreateWindowAndRenderer(globals::TILE_WIDTH*globals::TILE_ROWS, globals::TILE_WIDTH * globals::TILE_COLS, 0, &this->_window, &this->_renderer);
     SDL_SetWindowTitle(this->_window, "Chicora Fantasy");
+
+    this->_timer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+
     this->gameLoop();
 }
 
@@ -34,24 +35,32 @@ void Main::gameLoop() {
     this->loadLevel();
    // this->drawRect(0, 0, 100, 100);
     
+    auto FPS = std::chrono::milliseconds(1000 / globals::FPS);
+    
     while(true) {
     
-        for (int y = 0; y < globals::TILE_COLS; y++) {
+        std::chrono::milliseconds timer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
+        
+        if (timer >= (this->_timer + FPS)) {
+            
+            this->_timer = timer;
 
-            for (int x = 0; x < globals::TILE_ROWS; x++) {
+            for (int y = 0; y < globals::TILE_COLS; y++) {
 
-                std::string chr;
-                chr.push_back(this->_level[y].val[x]);
+                for (int x = 0; x < globals::TILE_ROWS; x++) {
 
-                this->drawRect(x, y, chr);
+                    std::string chr;
+                    chr.push_back(this->_level[y].val[x]);
+
+                    this->drawRect(x, y, chr);
+                }
             }
+            
+            SDL_RenderPresent(this->_renderer);
+            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+            SDL_RenderClear(this->_renderer);                
         }
-    
-        SDL_RenderPresent(this->_renderer);
-        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-        SDL_RenderClear(this->_renderer);
-    
-    }
+    } 
 }
 
 void Main::drawRect(int x, int y, std::string sprite) {

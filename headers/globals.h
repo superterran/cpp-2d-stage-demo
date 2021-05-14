@@ -8,6 +8,9 @@ namespace globals {
     const int TILE_WIDTH = 50;
     const int TILE_ROWS = 25;
     const int TILE_COLS = 9;
+
+    const int FPS = 60;
+
 }
 
 #endif

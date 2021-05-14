@@ -32,9 +32,9 @@ Main::~Main() {
 void Main::gameLoop() {
 
     // this->loadYaml();
+
     this->loadLevel();
-   // this->drawRect(0, 0, 100, 100);
-    
+   
     auto FPS = std::chrono::milliseconds(1000 / globals::FPS);
     
     while(true) {

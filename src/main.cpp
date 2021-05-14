@@ -75,7 +75,7 @@ void Main::draw() {
             std::string chr;
             chr.push_back(this->_level[y].val[x]);
 
-            this->drawRect(x, y, chr);
+            this->drawRect(x * globals::TILE_WIDTH, y * globals::TILE_WIDTH, chr);
         }
     }
 }
@@ -89,8 +89,8 @@ void Main::drawRect(int x, int y, std::string sprite) {
 
     SDL_Rect rect;
 
-    rect.x = x * globals::TILE_WIDTH;
-    rect.y = y * globals::TILE_WIDTH;
+    rect.x = x;
+    rect.y = y;
     rect.w = globals::TILE_WIDTH;
     rect.h = globals::TILE_WIDTH;
 

@@ -79,7 +79,9 @@ void Main::gameLoop() {
 }
 
 void Main::move() {
-    this->drawRect(2, 2, "P");
+
+    this->drawRect(3, 3, "P");
+
 }
 
 

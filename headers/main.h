@@ -46,6 +46,8 @@ public:
 
 	void loadLevel();
 
+	void draw();
+
 	Level _level[20];
 	std::map<std::string, Sprite> _sprites;
 

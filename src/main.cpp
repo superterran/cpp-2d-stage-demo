@@ -9,6 +9,7 @@
 #include "yaml-cpp/yaml.h"
 
 #include "globals.h"
+#include "input.h"
 #include "main.h"
 
 int main(int argc, const char* argv[]) {
@@ -34,34 +35,63 @@ void Main::gameLoop() {
     // this->loadYaml();
 
     this->loadLevel();
-   
     auto FPS = std::chrono::milliseconds(1000 / globals::FPS);
-    
+
+    SDL_Event event;
+    Input input;                        
+
+
     while(true) {
+
+        input.beginNewFrame();
+        
+        if(SDL_PollEvent(&event)) {
+            if(event.type == SDL_KEYDOWN) {
+                if(event.key.repeat == 0) {
+                    input.keyDownEvent(event);
+                }
+            }
+            else if (event.type == SDL_KEYUP) {
+                input.keyUpEvent(event);
+            }
+            else if (event.type == SDL_QUIT) {
+                return;
+            }
+        }
+        if(input.wasKeyPressed(SDL_SCANCODE_ESCAPE) == true) {
+            return;
+        } 
     
         std::chrono::milliseconds timer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch());
         
         if (timer >= (this->_timer + FPS)) {
-            
+
             this->_timer = timer;
 
-            for (int y = 0; y < globals::TILE_COLS; y++) {
-
-                for (int x = 0; x < globals::TILE_ROWS; x++) {
-
-                    std::string chr;
-                    chr.push_back(this->_level[y].val[x]);
-
-                    this->drawRect(x, y, chr);
-                }
-            }
-            
-            SDL_RenderPresent(this->_renderer);
-            std::this_thread::sleep_for(std::chrono::milliseconds(3000));
-            SDL_RenderClear(this->_renderer);                
+            this->draw();
+             
         }
     } 
 }
+
+void Main::draw() {
+
+    for (int y = 0; y < globals::TILE_COLS; y++) {
+
+        for (int x = 0; x < globals::TILE_ROWS; x++) {
+
+            std::string chr;
+            chr.push_back(this->_level[y].val[x]);
+
+            this->drawRect(x, y, chr);
+        }
+    }
+
+    SDL_RenderPresent(this->_renderer);
+    SDL_RenderClear(this->_renderer);   
+
+}
+
 
 void Main::drawRect(int x, int y, std::string sprite) {
 

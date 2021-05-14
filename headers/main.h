@@ -20,6 +20,13 @@ struct Tiles {
 	int a;
 };
 
+struct Sprite {
+	int r;
+	int g;
+	int b;
+	int a;
+};
+
 class Main {
 
 public:
@@ -39,13 +46,15 @@ public:
 	void loadLevel();
 
 	Level _level[20];
-	Tiles _tiles[26];
+	std::map<std::string, Sprite> _sprites;
 
 private:
 	SDL_Window* _window;
 	SDL_Renderer* _renderer;
 
 	std::map<std::string, SDL_Surface*> _spriteSheets;
+
+	
 };
 
 #endif

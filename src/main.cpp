@@ -54,27 +54,17 @@ void Main::gameLoop() {
     }
 }
 
-void Main::drawRect(int x, int y, std::string tile) {
+void Main::drawRect(int x, int y, std::string sprite) {
 
-    int r = 0;
-    int g = 0;
-    int b = 0;
-    int a = 0;
+    int r = this->_sprites[sprite].r;
+    int g = this->_sprites[sprite].g;
+    int b = this->_sprites[sprite].b;
+    int a = this->_sprites[sprite].a;
 
-    for (int i = 0; i < 26; i++) {
-
-        if (this->_tiles[i].id == tile) {
-            r = this->_tiles[i].r;
-            g = this->_tiles[i].g;
-            b = this->_tiles[i].b;
-            a = this->_tiles[i].a;
-            break;
-        }
-    }
-    
     SDL_Rect rect;
-    rect.x = x*globals::TILE_WIDTH;
-    rect.y = y*globals::TILE_WIDTH;
+
+    rect.x = x * globals::TILE_WIDTH;
+    rect.y = y * globals::TILE_WIDTH;
     rect.w = globals::TILE_WIDTH;
     rect.h = globals::TILE_WIDTH;
 
@@ -101,24 +91,9 @@ void Main::loadLevel() {
     this->_level[7].val = "w                       w";
     this->_level[8].val = "wwwwwwwwwwwwwwwwwwwwwwwww";
 
-    this->_tiles[0].id = " "; 
-    this->_tiles[0].r = 0;
-    this->_tiles[0].g = 0;
-    this->_tiles[0].b = 0;
-    this->_tiles[0].a = 255;
-
-    this->_tiles[1].id = "w";
-    this->_tiles[1].r = 0;
-    this->_tiles[1].g = 255;
-    this->_tiles[1].b = 0;
-    this->_tiles[1].a = 255;
-
-    this->_tiles[2].id = "P";
-    this->_tiles[2].r = 0;
-    this->_tiles[2].g = 0;
-    this->_tiles[2].b = 255;
-    this->_tiles[2].a = 255;
-
+    this->_sprites[" "] = { 0, 0, 0, 255 };
+    this->_sprites["w"] = { 0, 255, 0, 255 };
+    this->_sprites["P"] = { 0, 0, 255, 255 };
 }
 
 

@@ -103,19 +103,27 @@ void Main::drawRect(int x, int y, std::string sprite) {
 
 void Main::loadYaml() {
     YAML::Node config = YAML::LoadFile("levels/basic.yaml");
-    // this->_level[] = config["level"];
+   // this->_level = config.level;
+
+    
+    for(YAML::const_iterator it=map.begin(); it!=map.end(); ++it) {
+        
+    }
 }
 
 void Main::loadLevel() {
-    this->_level[0].val = "wwwwwwwwwwwwwwwwwwwwwwwww";
-    this->_level[1].val = "w                       w";
-    this->_level[2].val = "w                       w";
-    this->_level[3].val = "w                       w";
-    this->_level[4].val = "w                       w";
-    this->_level[5].val = "w                       w";
-    this->_level[6].val = "w                       w";
-    this->_level[7].val = "w                       w";
-    this->_level[8].val = "wwwwwwwwwwwwwwwwwwwwwwwww";
+    // this->_level[0].val = "wwwwwwwwwwwwwwwwwwwwwwwww";
+    // this->_level[1].val = "w                       w";
+    // this->_level[2].val = "w                       w";
+    // this->_level[3].val = "w                       w";
+    // this->_level[4].val = "w                       w";
+    // this->_level[5].val = "w                       w";
+    // this->_level[6].val = "w                       w";
+    // this->_level[7].val = "w                       w";
+    // this->_level[8].val = "wwwwwwwwwwwwwwwwwwwwwwwww";
+
+    this->loadYaml();
+
 
     this->_sprites[" "] = { 0, 0, 0, 255 };
     this->_sprites["w"] = { 0, 255, 0, 255 };
